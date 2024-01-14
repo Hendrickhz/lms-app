@@ -1,8 +1,13 @@
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 import React from 'react'
 
 const CoursesPage = () => {
   return (
-    <div>This is CoursesPage</div>
+    <div className=' p-6'>
+        <Link href={'/teacher/create'}>
+        <Button variant={'default'}>Create Course</Button></Link>
+    </div>
   )
 }
 
