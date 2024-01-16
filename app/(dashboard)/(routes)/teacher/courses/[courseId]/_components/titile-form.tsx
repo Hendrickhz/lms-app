@@ -16,6 +16,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface TitleFormProps {
   title: string;
@@ -27,6 +30,7 @@ const formSchema = z.object({
 });
 
 const TitleForm = ({ title, courseId }: TitleFormProps) => {
+  const router= useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const toggleEdit = () => setIsEditing(!isEditing);
 
@@ -36,9 +40,11 @@ const TitleForm = ({ title, courseId }: TitleFormProps) => {
       title: title,
     },
   });
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const res= await axios.patch(`/api/courses/${courseId}`,values);
+    toast.success('Course Updated.')
+    router.refresh();
+    toggleEdit();
     console.log(values);
   }
   return (
