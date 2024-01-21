@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import React from "react";
 import TitleForm from "./_components/titile-form";
 import DescriptionForm from "./_components/description-form";
+import ImageForm from "./_components/img-form";
 
 const IndividualCoursePage = async ({
   params,
@@ -53,6 +54,7 @@ const IndividualCoursePage = async ({
           </div>
           <TitleForm courseId={course?.id} title={course?.title}/>
           <DescriptionForm courseId={course?.id} description={course?.description || ''}/>
+          <ImageForm courseId={course?.id} imageURL={course?.imageURL || ''}/>
         </div>
       </div>
     </div>
