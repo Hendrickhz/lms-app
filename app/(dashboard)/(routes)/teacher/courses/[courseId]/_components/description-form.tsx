@@ -45,7 +45,7 @@ const DescriptionForm = ({ description, courseId }: DescriptionFormProps) => {
     toast.success('Course Updated.')
     router.refresh();
     toggleEdit();
-    console.log(values);
+
   }
   return (
     <div className="p-4 border rounded-sm mt-6 bg-slate-100">
@@ -84,7 +84,7 @@ const DescriptionForm = ({ description, courseId }: DescriptionFormProps) => {
         <Button size={'sm'} type="submit">Save</Button>
       </form>
     </Form>:
-      <p className="font-semibold">{description}</p>}
+      <p className="font-semibold">{description || "These is no description for the course."}</p>}
     </div>
   );
 };

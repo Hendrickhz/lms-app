@@ -7,6 +7,7 @@ import React from "react";
 import TitleForm from "./_components/titile-form";
 import DescriptionForm from "./_components/description-form";
 import ImageForm from "./_components/img-form";
+import CategoryForm from "./_components/category-form";
 
 const IndividualCoursePage = async ({
   params,
@@ -20,7 +21,14 @@ const IndividualCoursePage = async ({
   const course = await db.course.findUnique({
     where: { id: params.courseId, userId },
   });
-  if(!course){
+
+  const categories = await db.category.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
+
+  if (!course) {
     return null;
   }
 
@@ -49,12 +57,23 @@ const IndividualCoursePage = async ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-16">
         <div className="">
           <div className="flex items-center gap-2">
-          <IconBadge icon={LayoutDashboard} variant={'default'}/>
+            <IconBadge icon={LayoutDashboard} variant={"default"} />
             <h2 className=" text-xl">Customize Your course</h2>
           </div>
-          <TitleForm courseId={course?.id} title={course?.title}/>
-          <DescriptionForm courseId={course?.id} description={course?.description || ''}/>
-          <ImageForm courseId={course?.id} imageURL={course?.imageURL || ''}/>
+          <TitleForm courseId={course?.id} title={course?.title} />
+          <DescriptionForm
+            courseId={course?.id}
+            description={course?.description || ""}
+          />
+          <ImageForm courseId={course?.id} imageURL={course?.imageURL || ""} />
+          <CategoryForm
+            courseId={course?.id}
+            initialCategoryId={course?.categoryId || ""}
+            options={categories.map((option) =>{return {
+              label: option.name,
+              value: option.id
+            }})}
+          />
         </div>
       </div>
     </div>

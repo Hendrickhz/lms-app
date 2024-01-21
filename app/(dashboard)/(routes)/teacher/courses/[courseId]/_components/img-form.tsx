@@ -47,7 +47,6 @@ const ImageForm = ({ imageURL, courseId }: ImageFormProps) => {
     toast.success("Course Updated.");
     router.refresh();
     toggleEdit();
-    console.log(values);
   }
   return (
     <div className="p-4 border rounded-sm mt-6 bg-slate-100">
