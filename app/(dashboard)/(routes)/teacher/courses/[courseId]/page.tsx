@@ -1,13 +1,14 @@
 import { IconBadge } from "@/components/icon-badge";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
-import { LayoutDashboard } from "lucide-react";
+import { CircleDollarSign, LayoutDashboard, ListChecks } from "lucide-react";
 import { redirect } from "next/navigation";
 import React from "react";
 import TitleForm from "./_components/titile-form";
 import DescriptionForm from "./_components/description-form";
 import ImageForm from "./_components/img-form";
 import CategoryForm from "./_components/category-form";
+import PriceForm from "./_components/price-form";
 
 const IndividualCoursePage = async ({
   params,
@@ -69,11 +70,29 @@ const IndividualCoursePage = async ({
           <CategoryForm
             courseId={course?.id}
             initialCategoryId={course?.categoryId || ""}
-            options={categories.map((option) =>{return {
-              label: option.name,
-              value: option.id
-            }})}
+            options={categories.map((option) => {
+              return {
+                label: option.name,
+                value: option.id,
+              };
+            })}
           />
+        </div>
+        <div className=" space-y-2">
+          <div className="">
+            <div className=" flex items-center gap-x-2">
+              <IconBadge icon={ListChecks} />
+              <h2 className="  text-xl">Create Chapters</h2>
+            </div>
+            <div className="">todo: Chapters</div>
+          </div>
+          <div className="">
+            <div className="flex items-center gap-x-2">
+              <IconBadge icon={CircleDollarSign}/>
+              <h2 className="text-xl">Sell Your Course</h2>
+            </div>
+            <PriceForm initialPrice={course?.price || 0} courseId={course?.id}/>
+          </div>
         </div>
       </div>
     </div>
