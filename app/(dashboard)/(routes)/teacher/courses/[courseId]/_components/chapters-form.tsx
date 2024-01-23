@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Pencil } from "lucide-react";
+import { Loader2, Pencil } from "lucide-react";
 import React, { useState } from "react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,6 +21,7 @@ import { useRouter } from "next/navigation";
 import { Chapter, Course } from "@prisma/client";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
+import ChaptersList from "./chapters-list";
 
 interface ChaptersFormProps {
   initialData: Course & { chapters: Chapter[] };
@@ -49,8 +50,31 @@ const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
     router.refresh();
     toggleCreate();
   }
+  const onReorder = async (updateData: { id: string; position: number }[]) => {
+    try {
+      setIsUpdating(true);
+
+      await axios.put(`/api/courses/${courseId}/chapters/reorder`, {
+        list: updateData
+      });
+      toast.success("Chapters reordered");
+      router.refresh();
+    } catch {
+      toast.error("Something went wrong");
+    } finally {
+      setIsUpdating(false);
+    }
+  }
+  const onEdit = (id: string) => {
+    router.push(`/teacher/courses/${courseId}/chapters/${id}`);
+  }
   return (
-    <div className="p-4 border rounded-sm mt-6 bg-slate-100">
+    <div className=" relative p-4 border rounded-sm mt-6 bg-slate-100">
+       {isUpdating && (
+        <div className="absolute h-full w-full bg-slate-500/20 top-0 right-0 rounded-m flex items-center justify-center">
+          <Loader2 className="animate-spin h-6 w-6 text-sky-700" />
+        </div>
+      )}
       <div className=" flex items-center justify-between ">
         <p>Course Chapters</p>
         <div className=" text-sm">
@@ -99,6 +123,13 @@ const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
             )}
           >
             {!initialData.chapters.length && "No Chapter yet."}
+            {initialData?.chapters.length > 0 && (
+              <ChaptersList
+                items={initialData.chapters || []}
+                onEdit={onEdit}
+                onReorder={onReorder}
+              />
+            )}
           </div>
           <p className=" text-xs text-muted-foreground mt-2">
             Drag and drop the chapters to position.
