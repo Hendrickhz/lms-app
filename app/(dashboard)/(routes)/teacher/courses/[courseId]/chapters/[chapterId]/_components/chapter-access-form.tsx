@@ -18,24 +18,23 @@ import {
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import Editor from "@/components/editor";
-import Preview from "@/components/preview";
+import { Checkbox } from "@/components/ui/checkbox";
 
-interface ChapterDescriptionFormProps {
-  description: string | null;
+interface ChapterAccessFormProps {
+  isFree: boolean;
   courseId: string;
   chapterId: string;
 }
 
 const formSchema = z.object({
-  description: z.string().min(1, { message: "Description is required." }),
+  isFree: z.boolean()
 });
 
-const ChapterDescriptionForm = ({
-  description,
+const ChapterAccessForm = ({
+  isFree,
   courseId,
   chapterId,
-}: ChapterDescriptionFormProps) => {
+}: ChapterAccessFormProps) => {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const toggleEdit = () => setIsEditing(!isEditing);
@@ -43,7 +42,7 @@ const ChapterDescriptionForm = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      description: description || "",
+      isFree: Boolean(isFree),
     },
   });
   const { isSubmitting, isValid } = form.formState;
@@ -59,7 +58,7 @@ const ChapterDescriptionForm = ({
   return (
     <div className="p-4 border rounded-sm mt-6 bg-slate-100">
       <div className=" flex items-center justify-between ">
-        <p>Chapter Description</p>
+        <p>Chapter Access</p>
         <div className=" text-sm">
           <Button onClick={toggleEdit} variant={"ghost"}>
             {isEditing ? (
@@ -67,7 +66,7 @@ const ChapterDescriptionForm = ({
             ) : (
               <>
                 <Pencil size={15} />
-                <span className=" ml-2">Edit Description</span>
+                <span className=" ml-2">Edit Access</span>
               </>
             )}
           </Button>
@@ -78,18 +77,15 @@ const ChapterDescriptionForm = ({
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
             <FormField
               control={form.control}
-              name="description"
+              name="isFree"
               render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    {/* <Textarea
-                      placeholder="eg. This chapter is about ...."
-                      {...field}
-                    /> */}
-                    <Editor {...field} />
+                <FormItem className=" flex gap-1 items-center p-4 rounded-md">
+                  <FormControl >
+                  
+                    <Checkbox onCheckedChange={field.onChange} checked={field.value}/>
                   </FormControl>
-                  <FormDescription>
-                    This is your chapter Description.
+                  <FormDescription className=" mt-0">
+                    Check the checkbox if you want to set this chapter free for preview. 
                   </FormDescription>
                   <FormMessage />
                 </FormItem>
@@ -106,11 +102,11 @@ const ChapterDescriptionForm = ({
         </Form>
       ) : (
         <div className="font-semibold">
-          {description ?  <Preview value={description}/> : "These is no description for the chapter."}
+          {isFree ? "This chapter is free for preview." : "This chapter is not free for preview."}
         </div>
       )}
     </div>
   );
 };
 
-export default ChapterDescriptionForm;
+export default ChapterAccessForm;

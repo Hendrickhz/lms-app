@@ -50,12 +50,13 @@ const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
     router.refresh();
     toggleCreate();
   }
+  const { isSubmitting, isValid } = form.formState;
   const onReorder = async (updateData: { id: string; position: number }[]) => {
     try {
       setIsUpdating(true);
 
       await axios.put(`/api/courses/${courseId}/chapters/reorder`, {
-        list: updateData
+        list: updateData,
       });
       toast.success("Chapters reordered");
       router.refresh();
@@ -64,13 +65,13 @@ const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
     } finally {
       setIsUpdating(false);
     }
-  }
+  };
   const onEdit = (id: string) => {
     router.push(`/teacher/courses/${courseId}/chapters/${id}`);
-  }
+  };
   return (
     <div className=" relative p-4 border rounded-sm mt-6 bg-slate-100">
-       {isUpdating && (
+      {isUpdating && (
         <div className="absolute h-full w-full bg-slate-500/20 top-0 right-0 rounded-m flex items-center justify-center">
           <Loader2 className="animate-spin h-6 w-6 text-sky-700" />
         </div>
@@ -109,7 +110,11 @@ const ChaptersForm = ({ initialData, courseId }: ChaptersFormProps) => {
                 </FormItem>
               )}
             />
-            <Button size={"sm"} type="submit">
+            <Button
+              disabled={!isValid || isSubmitting}
+              size={"sm"}
+              type="submit"
+            >
               Create
             </Button>
           </form>
