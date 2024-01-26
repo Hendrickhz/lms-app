@@ -8,6 +8,7 @@ import React from "react";
 import ChapterTitleForm from "./_components/chapter-titile-form";
 import ChapterDescriptionForm from "./_components/chapter-description-form";
 import ChapterAccessForm from "./_components/chapter-access-form";
+import ChapterVideoForm from "./_components/chapter-video-form";
 
 const ChapterIdPage = async ({
   params,
@@ -88,9 +89,14 @@ const ChapterIdPage = async ({
         </div>
         <div className="space-y-4">
           <div className="flex items-center gap-2">
-            <IconBadge icon={Video}/>
+            <IconBadge icon={Video} />
             <p className="text-xl">Add a Video</p>
           </div>
+          <ChapterVideoForm
+            initialData={chapter}
+            courseId={params.courseId}
+            chapterId={params.chapterId}
+          />
         </div>
       </div>
     </div>
