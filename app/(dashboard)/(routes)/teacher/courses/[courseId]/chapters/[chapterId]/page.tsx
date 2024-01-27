@@ -40,6 +40,7 @@ const ChapterIdPage = async ({
 
   const completedFields = requiredFields.filter(Boolean).length;
   const completionText = `(${completedFields}/${requiredFields.length})`;
+  const isComplete = requiredFields.every(Boolean);
   return (
     <>
       {!chapter.isPublished && (
@@ -64,7 +65,7 @@ const ChapterIdPage = async ({
               </div>
               <ChapterActions
                 isPublished={chapter.isPublished}
-                disabled={false}
+                disabled={!isComplete}
                 courseId={params.courseId}
                 chapterId={params.chapterId}
               />
