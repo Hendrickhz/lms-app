@@ -1,8 +1,17 @@
 import React from 'react'
+import Categories from './_components/categories'
+import { db } from '@/lib/db'
 
-const SearchPage = () => {
+const SearchPage = async() => {
+  const categories= await db.category.findMany({
+    orderBy:{
+      name:"asc"
+    }
+  })
   return (
-    <div>This is SearchPage</div>
+    <div className=' p-6'>
+      <Categories items={categories}/>
+    </div>
   )
 }
 
