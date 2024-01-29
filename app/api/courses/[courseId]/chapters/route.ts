@@ -24,15 +24,15 @@ export async function POST(
 
     const lastChapter = await db.chapter.findFirst({
       where: { courseId: params.courseId },
-      orderBy: { positon: "desc" },
+      orderBy: { position: "desc" },
     });
 
-    const newChapterPosition = lastChapter ? lastChapter.positon + 1 : 1;
+    const newChapterPosition = lastChapter ? lastChapter.position + 1 : 1;
     const newChapter = await db.chapter.create({
       data: {
         title,
         courseId: params.courseId,
-        positon: newChapterPosition,
+        position: newChapterPosition,
       },
     });
     return NextResponse.json(newChapter);

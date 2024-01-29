@@ -33,7 +33,7 @@ const IndividualCoursePage = async ({
     include: {
       chapters: {
         orderBy: {
-          positon: "asc",
+          position: "asc",
         },
       },
       attachments: {

@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch","fullTextIndex"]  // to enable full text search
 }
 
 datasource db {
@@ -30,6 +31,7 @@ model Course {
   updatedAt DateTime @updatedAt
 
   @@index([categoryId])
+  @@fulltext([title]) // to enable full text search
 }
 
 model Attachment {
@@ -55,7 +57,7 @@ model Chapter {
   title       String
   description String?
   videoURL    String?
-  positon     Int
+  position     Int
   isPublished Boolean @default(false)
   isFree      Boolean @default(false)
 
@@ -97,6 +99,7 @@ model UserProgress {
 
 model Purchase {
   id       String @id @default(uuid())
+  userId String
   courseId String
   course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
