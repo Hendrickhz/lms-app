@@ -10,7 +10,7 @@ import SearchInput from "./search-input";
 const NavbarRouteItems = () => {
   const pathName = usePathname();
   const isTeacherMode = pathName?.startsWith("/teacher");
-  const isPlayerMode = pathName?.includes("/chapter");
+  const isCoursePage = pathName?.includes("/courses");
   const isSearchPage = pathName === "/search";
   return (
     <>
@@ -20,7 +20,7 @@ const NavbarRouteItems = () => {
         </div>
       )}
       <div className=" flex  gap-x-2 ml-auto">
-        {isTeacherMode || isPlayerMode ? (
+        {isTeacherMode || isCoursePage ? (
           <Link href={"/"}>
             <Button size={"sm"} variant={"ghost"}>
               <LogOut className="w-4 h-4 mr-2" /> Exit

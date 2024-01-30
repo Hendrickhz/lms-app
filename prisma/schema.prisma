@@ -107,6 +107,7 @@ model Purchase {
   updatedAt DateTime @updatedAt
 
   @@index([courseId])
+  @@unique([userId,courseId])// user should be able to purchase a course only one time
 }
 
 model StripeCustomer {
