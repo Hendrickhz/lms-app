@@ -51,13 +51,16 @@ const IndividualCoursePage = async ({
   if (!course) {
     return redirect("/");
   }
-
+  const hasPublishedChapters = course.chapters.filter(
+    (chapter) => chapter.isPublished == true
+  );
   const requiredFields = [
     course?.title,
     course?.description,
     course?.imageURL,
     course?.price,
     course?.categoryId,
+    hasPublishedChapters.length
   ];
   const totalFields = requiredFields.length;
   const completedFields = requiredFields.filter(Boolean).length;
@@ -67,7 +70,9 @@ const IndividualCoursePage = async ({
 
   return (
     <>
-    {!course.isPublished && <Banner label="This course is unpublished. It will not be visible to the students."/>}
+      {!course.isPublished && (
+        <Banner label="This course is unpublished. It will not be visible to the students." />
+      )}
       <div className="p-6">
         <div className="flex justify-between items-center">
           <div className=" flex flex-col gap-2">

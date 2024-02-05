@@ -3,9 +3,6 @@ import React from "react";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
@@ -31,13 +28,7 @@ const CourseMobileSidebar = ({
           <Menu className=" transition hover:opacity-75" />
         </SheetTrigger>
         <SheetContent side={"left"} className=" p-0 bg-white w-72">
-          {/* <SheetHeader>
-            <SheetTitle>Are you absolutely sure?</SheetTitle>
-            <SheetDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-            </SheetDescription>
-          </SheetHeader> */}
+
           <CourseSidebar course={course} progressCount={progressCount} />
         </SheetContent>
       </Sheet>
