@@ -4,6 +4,7 @@ import { BookOpen } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import CourseProgress from "./course-progress";
 
 interface CourseCardProps {
   title: string;
@@ -49,7 +50,7 @@ const CourseCard = ({
         </div>
       </div>
       {progress !== null ? (
-        "TODO Progress component"
+       <CourseProgress value={progress}/>
       ) : (
         <p className="text-md md:text-sm font-medium text-slate-700">
           {format(price)}

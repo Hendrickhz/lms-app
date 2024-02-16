@@ -4,6 +4,7 @@ import { Chapter, Course, UserProgress } from "@prisma/client";
 import { redirect } from "next/navigation";
 import React from "react";
 import CourseSidebarItem from "./course-sidebar-item";
+import CourseProgress from "@/components/course-progress";
 interface CourseSidebarProps {
   course: Course & {
     chapters: (Chapter & { userProgress: UserProgress[] | null })[];
@@ -24,6 +25,11 @@ const CourseSidebar = async ({ course, progressCount }: CourseSidebarProps) => {
     <div className=" h-full flex flex-col border-r shadow-sm overflow-y-auto">
       <div className=" p-6 border-b ">
         <h1 className=" font-semibold">{course.title}</h1>
+        {purchase && <>
+        <div className="mt-10">
+<CourseProgress variant="success" value={progressCount!}/>
+        </div>
+        </>}
         {/* TODO: CHECK PURCHASE OR ADD PROGRESS */}
       </div>
       <div className=" w-full flex flex-col">
