@@ -1,34 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Learning Management System App
 
-## Getting Started
+This is a learning management system (LMS) web application built with Next.js, Prisma, UploadThing, Clerk.js, and Stripe. It allows users to browse, filter, and purchase courses, mark chapters as completed, track progress, and more.
 
-First, run the development server:
+## Key Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+- **Browse & Filter Courses:** Users can easily navigate through available courses and filter them based on different criteria.
+- **Purchase Courses using Stripe:** Integration with Stripe allows seamless payment processing for course purchases.
+- **Mark Chapters as Completed or Uncompleted:** Users can track their progress by marking chapters as completed or uncompleted.
+- **Progress Calculation:** The system calculates and displays the progress of each course for the user.
+- **Student Dashboard:** Users have access to a personalized dashboard where they can view their enrolled courses and progress.
+- **Teacher Mode:** Teachers can access a special mode to create new courses, chapters, and manage course content.
+- **Create New Courses:** Teachers can create new courses with detailed descriptions and upload resources.
+- **Create New Chapters:** Chapters can be created within courses, allowing for structured content delivery.
+- **Easily Reorder Chapters:** Intuitive drag-and-drop functionality enables easy reordering of chapter positions.
+- **Upload Thumbnails, Attachments, and Videos:** Integration with UploadThing allows for easy uploading of multimedia content.
+- **Video Processing using Mux:** Videos are processed using Mux for optimal streaming and playback.
+- **HLS Video Player using Mux:** Mux provides an HLS video player for seamless video playback.
+- **Rich Text Editor:** A rich text editor is provided for creating detailed chapter descriptions.
+- **Authentication using Clerk:** User authentication is handled using Clerk.js for secure access control.
+- **ORM using Prisma:** Prisma ORM facilitates database interactions, ensuring efficient data management.
+- **MySQL Database:** Local MySQL database is used for storing application data.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation and Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+As this project is intended for demonstration purposes and not for deployment, it is not provided with installation guides or instructions for cloning. However, you can explore the source code to understand its implementation.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Credits
 
-## Learn More
+This project was developed with reference to tutorials from [Code With Antonio](https://www.codewithantonio.com/), 
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
