@@ -30,7 +30,7 @@ export async function PUT(
     for (let item of list) {
       await db.chapter.update({
         where: { id: item.id },
-        data: { positon: item.position }
+        data: { position: item.position }
       });
     }
 
