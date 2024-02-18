@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Sidebar from "./_components/sidebar";
 import Navbar from "./_components/navbar";
+import { auth } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -12,6 +14,10 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const { userId } = auth();
+  if (!userId) {
+    return redirect("/sign-in");
+  }
   return (
     <div className="  h-full">
       <div className=" inset-y-0 z-50 md:ml-56">

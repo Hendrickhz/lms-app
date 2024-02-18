@@ -1,11 +1,10 @@
 # Learning Management System App
 
-This is a learning management system (LMS) web application built with Next.js, Prisma, UploadThing, Clerk.js, and Stripe. It allows users to browse, filter, and purchase courses, mark chapters as completed, track progress, and more.
+This is a learning management system (LMS) web application built with Next.js, Prisma, UploadThing, and Clerk.js. It allows users to browse, filter, and purchase courses, mark chapters as completed, track progress, and more.
 
 ## Key Features
 
 - **Browse & Filter Courses:** Users can easily navigate through available courses and filter them based on different criteria.
-- **Purchase Courses using Stripe:** Integration with Stripe allows seamless payment processing for course purchases.
 - **Mark Chapters as Completed or Uncompleted:** Users can track their progress by marking chapters as completed or uncompleted.
 - **Progress Calculation:** The system calculates and displays the progress of each course for the user.
 - **Student Dashboard:** Users have access to a personalized dashboard where they can view their enrolled courses and progress.
