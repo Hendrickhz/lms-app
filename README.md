@@ -24,6 +24,15 @@ This is a learning management system (LMS) web application built with Next.js, P
 
 As this project is intended for demonstration purposes and not for deployment, it is not provided with installation guides or instructions for cloning. However, you can explore the source code to understand its implementation.
 
+
+## App sample images
+
+![Sample Photo One](lms-app-cover.PNG)
+
+![Sample Photo One](lmp-app-img-1.PNG)
+
+![Sample Photo One](lms-app-img-2.PNG)
+
 ## Credits
 
 This project was developed with reference to tutorials from [Code With Antonio](https://www.codewithantonio.com/), 
