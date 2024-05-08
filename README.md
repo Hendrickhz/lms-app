@@ -29,7 +29,7 @@ As this project is intended for demonstration purposes and not for deployment, i
 
 ![Sample Photo One](lms-app-cover.PNG)
 
-![Sample Photo One](lmp-app-img-1.PNG)
+![Sample Photo One](lms-app-img-1.PNG)
 
 ![Sample Photo One](lms-app-img-2.PNG)
 
